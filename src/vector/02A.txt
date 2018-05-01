@@ -1,0 +1,56 @@
+02A-1: Abstract Data Type vs. Data Structure
+
+- Definition:
+    - 抽象数据类型 = 数据模型 + 定义与数据模型上的操作
+    - 数据结构 = 基于特定语言，实现的ADT算法
+
+- Data Type: 
+    - e.g., int, float, char, etc.
+    - 通过数据类型定义元素: int x; float y; char z; 
+    - 元素拥有特定数据类型的特点，e.g., 运算;
+- ADT: 
+    - 只关心它的操作，不关心它的内部实现;
+    - e.g., vector, list, etc.
+    - vector myvector; list mylist;
+
+- Example:
+    - 驾驶员 (Application) => 汽车 (Interface, ADT) <= 制造商 (Implementation)
+
+02A-2, 02A-3: From Array to Vector
+
+- Array:
+    - C/C++ 中，数组 A[] 中的元素与 [0, n) 之间的序号一一对应;
+    - 反之，通过编号可以<直接>访问数组元素: A[i] = A+i*s (s为单位元素占用空间);
+    - 线性数组 (linear array).
+
+- Vector:
+    - 数组的抽象与泛化，一组元素按次序<封装>而成，在物理 (内存) 上紧邻排列;
+    - 通过秩 (rank) 访问元素，call-by-rank;
+    - 元素类型不限于基本类型;
+    - 方便<复杂>的数据结构实现.
+
+- 向量ADT接口:
+    - 操作，功能，适用对象
+
+- Example:
+    - disorder(): 返回紧邻逆序对数目 (一个序列有序，当且仅当其紧邻逆序对 (e.g., 3 1) 数目为0);
+    - 并不关心实现细节，只关心操作语义;
+    - find(): 没有找到对应元素时返回-1; vs. search(): 没有找到对应元素时返回 vector中不超过该数值的最大数 的秩;
+    - search(), e.g., 3 4 4 6 7 9, search(8) = 4, search(1) = -1.
+
+02A-4: 构造与析构 
+
+- Vector模板类:
+    - C++实现中，Vector结构是被封装起来 (作为模板类)，public functions 是提供给 applications 的接口；
+    - private attributes: _elem: 开辟的数据区; _capacity: 数据区总容量; _size: 有效数据的总容量. (_capacity >= _size)
+    
+- 构造与析构:
+    - 通过默认方式构造 vector 时指定初始容量 (_capacity) 即可，_elem 通过 new 申请，_size 为 0;
+    - 其他构造方式有: 数组区间复制，向量区间复制，向量整体复制。均基于 copyFrom 接口;
+    - 析构通过 delete 释放 _elem.
+
+02A-5: 复制
+
+- 基于复制的构造:
+    - step1: 在 vector 内部开辟出足够空间; step2: 将元素复制到空间中.
+    - 描述区间时，使用左闭右开的形式 [a,b).
