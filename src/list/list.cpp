@@ -36,31 +36,92 @@ list* listInit(int* variables, int size) {
 }
 
 bool isListEmpty(list* l) {
-	bool flag = true;
+	// cout << "isListEmpty: check if the list is empty (head->next is NULL)" << endl;
 
+	bool flag = true;
+	if (l->next != NULL) {
+		flag = false;
+	}
 	return flag;
 }
 
 int listLength(list* l) {
+	// cout << "listLength: return the length of a given list" << endl;
+
+	if (isListEmpty(l)) {
+		cout << "Error: the given list is empty, return -1" << endl;
+		return -1;
+	}
+
 	int length = 0;
+	list* p = l;
+	while (p != NULL) {
+		p = p->next;
+		length++;
+	}
 
 	return length;
 }
 
-int listItem(list* l, int index) {
+int getItem(list* l, int index) {
+	// cout << "listItem: return an item of the list based on a given index" << endl;
+
 	int value = -1;
+	int length = listLength(l);
+	if (length < index+1) {
+		cout << "Error: the index used by listItem is overflowed!" << endl;
+	} else {
+		list* p = l;
+		for (int i = 0; i < index; i++) {
+			p = p->next;
+		}
+		value = p->entry;
+	}
 
 	return value;
 }
 
 int findItem(list* l, int item) {
-	int index = -1;
+	// cout << "findItem: search a given item in the list;" << endl;
+	// cout << "if found, return the first index of the item;" << endl;
+	// cout << "otherwise, return -1." << endl;
+
+	int index = 0;
+	bool foundItem = false;
+
+	list* p = l;
+	while (p != NULL) {
+		if (p->entry == item) {
+			foundItem = true;
+			break;
+		}
+		p = p->next;
+		index++;
+	}
+
+	if (!foundItem) {
+		index = -1;
+	}
 
 	return index;
 }
 
 bool insertItem(list* l, int index) {
+	// cout << "insertItem: insert a given item to the list based on a given index" << endl;
+
 	bool insertSuccess = false;
+
+	int length = listLength(l);
+	if (length < index) {
+		cout << "Error: the index used by insertItem is overflowed!" << endl;
+		return insertSuccess;
+	} else {
+		// list* p = l;
+		// for (int i = 0; i < index; i++) {
+		// 	p = p->next;
+		// }
+		// value = p->entry;
+	}
 
 	return insertSuccess;
 }
@@ -72,8 +133,7 @@ bool deleteItem(list* l, int index) {
 }
 
 void printList(list* l, int size) {
-	// help information
-	cout << "printList: print the whole list entries" << endl;
+	// cout << "printList: print the whole list entries" << endl;
 
 	list* p = l;
 	while (p != NULL) {
@@ -102,7 +162,21 @@ void test() {
 
 	// create the list using the input variables
 	list* mylist = listInit(variables, size);
+	cout << "mylist:";
 	printList(mylist, size);
+
+	int length = listLength(mylist);
+	cout << "The length of mylist:" << length << endl;
+	cout << "The first item of mylist:" << getItem(mylist, 0) << endl;
+	cout << "The last item of mylist:" << getItem(mylist, length-1) << endl;
+
+	cout << "Does 520 exist in mylist?" << endl;
+	int index = findItem(mylist, 520);
+	if (index == -1) {
+		cout << "No, 520 doesn't exist in mylist" << endl;
+	} else {
+		cout << "Sure, the index of 520 is " << index << endl;
+	}
 
 	return;
 }
