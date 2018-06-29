@@ -106,7 +106,7 @@ int findItem(list* l, int item) {
 	return index;
 }
 
-bool insertItem(list* l, int index) {
+bool insertItem(list* l, int index, int item) {
 	// cout << "insertItem: insert a given item to the list based on a given index" << endl;
 
 	bool insertSuccess = false;
@@ -116,23 +116,47 @@ bool insertItem(list* l, int index) {
 		cout << "Error: the index used by insertItem is overflowed!" << endl;
 		return insertSuccess;
 	} else {
-		// list* p = l;
-		// for (int i = 0; i < index; i++) {
-		// 	p = p->next;
-		// }
-		// value = p->entry;
+		list* p = l;
+		for (int i = 0; i < index; i++) {
+			p = p->next;
+		}
+
+		list* newNode = NULL;
+		newNode = new list;
+		newNode->entry = item;
+		newNode->next = p->next;
+		p->next = newNode;
+
+		insertSuccess = true;
 	}
 
 	return insertSuccess;
 }
 
 bool deleteItem(list* l, int index) {
+	// cout << "deleteItem: delete a given item to the list based on a given index" << endl;
+
 	bool deleteSuccess = false;
+
+	int length = listLength(l);
+	if (length < index) {
+		cout << "Error: the index used by deleteItem is overflowed!" << endl;
+		return deleteSuccess;
+	} else {
+		list* p = l;
+		for (int i = 0; i < index; i++) {
+			p = p->next;
+		}
+
+		p->next = p->next->next;
+
+		deleteSuccess = true;
+	}
 
 	return deleteSuccess;
 }
 
-void printList(list* l, int size) {
+void printList(list* l) {
 	// cout << "printList: print the whole list entries" << endl;
 
 	list* p = l;
@@ -145,6 +169,8 @@ void printList(list* l, int size) {
 }
 
 void test() {
+	cout << "=====Starting Tests=====" << endl;
+
 	int variables[100];
 
 	// for user input
@@ -163,7 +189,7 @@ void test() {
 	// create the list using the input variables
 	list* mylist = listInit(variables, size);
 	cout << "mylist:";
-	printList(mylist, size);
+	printList(mylist);
 
 	int length = listLength(mylist);
 	cout << "The length of mylist:" << length << endl;
@@ -174,9 +200,20 @@ void test() {
 	int index = findItem(mylist, 520);
 	if (index == -1) {
 		cout << "No, 520 doesn't exist in mylist" << endl;
+		cout << "So here we insert 520 to the end of mylist" << endl;
+		if (insertItem(mylist, length-1, 520)) {
+			printList(mylist);
+		}
 	} else {
 		cout << "Sure, the index of 520 is " << index << endl;
 	}
+
+	cout << "Finally, we delete the last item of mylist" << endl;
+	if (deleteItem(mylist, length-1)) {
+		printList(mylist);
+	}
+
+	cout << "=====Finishing Tests=====" << endl;
 
 	return;
 }
