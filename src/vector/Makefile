@@ -1,6 +1,9 @@
 all:
 	g++ -Wall -o 27 27.cpp -std=c++11 -lpthread
+	g++ -Wall -o 88 88.cpp -std=c++11 -lpthread
 clean:
-	rm 27
+	rm 27 88
 27:
 	g++ -Wall -o 27 27.cpp -std=c++11 -lpthread
+88:
+	g++ -Wall -o 88 88.cpp -std=c++11 -lpthread
