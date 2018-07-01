@@ -33,60 +33,60 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
 	int MAGIC = 952693358;
 
 	int lineno = 0;
-	int colomno = 0;
+	int columno = 0;
 
 	while (1) {
 		// 1.go right
-		while (colomno < n && matrix[lineno][colomno] != MAGIC) {
-			ans.push_back(matrix[lineno][colomno]);
-			matrix[lineno][colomno] = MAGIC;
-			colomno++;
+		while (columno < n && matrix[lineno][columno] != MAGIC) {
+			ans.push_back(matrix[lineno][columno]);
+			matrix[lineno][columno] = MAGIC;
+			columno++;
 		}
 
-		colomno--;
+		columno--;
 		lineno++;
 
 		// if the underneath item has been visited, break
-		if (matrix[lineno][colomno] == MAGIC) break;
+		if (matrix[lineno][columno] == MAGIC) break;
 
 		// 2.go down
-		while (lineno < m && matrix[lineno][colomno] != MAGIC) {
-			ans.push_back(matrix[lineno][colomno]);
-			matrix[lineno][colomno] = MAGIC;
+		while (lineno < m && matrix[lineno][columno] != MAGIC) {
+			ans.push_back(matrix[lineno][columno]);
+			matrix[lineno][columno] = MAGIC;
 			lineno++;
 		}
 
 		lineno--;
-		colomno--;
+		columno--;
 
 		// if the left item has been visited, break
-		if (matrix[lineno][colomno] == MAGIC) break;
+		if (matrix[lineno][columno] == MAGIC) break;
 
 		// 3.go left
-		while (colomno >= 0 && matrix[lineno][colomno] != MAGIC) {
-			ans.push_back(matrix[lineno][colomno]);
-			matrix[lineno][colomno] = MAGIC;
-			colomno--;
+		while (columno >= 0 && matrix[lineno][columno] != MAGIC) {
+			ans.push_back(matrix[lineno][columno]);
+			matrix[lineno][columno] = MAGIC;
+			columno--;
 		}
 
-		colomno++;
+		columno++;
 		lineno--;
 
 		// if the upward item has been visited, break
-		if (matrix[lineno][colomno] == MAGIC) break;
+		if (matrix[lineno][columno] == MAGIC) break;
 
 		// 4.go up
-		while (lineno >= 0 && matrix[lineno][colomno] != MAGIC) {
-			ans.push_back(matrix[lineno][colomno]);
-			matrix[lineno][colomno] = MAGIC;
+		while (lineno >= 0 && matrix[lineno][columno] != MAGIC) {
+			ans.push_back(matrix[lineno][columno]);
+			matrix[lineno][columno] = MAGIC;
 			lineno--;
 		}
 
 		lineno++;
-		colomno++;
+		columno++;
 
 		// if the right item has been visited, break
-		if (matrix[lineno][colomno] == MAGIC) break;
+		if (matrix[lineno][columno] == MAGIC) break;
 	}
 
 	return ans;
