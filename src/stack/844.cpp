@@ -1,4 +1,4 @@
-// leetcode496: next-greater-element-i
+// leetcode844: backspace-string-compare
 #include <cstdio>
 #include <iostream>
 #include <stack>
