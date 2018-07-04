@@ -83,7 +83,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 // beautiful solution
 bool isSameTree2(TreeNode* p, TreeNode* q) {
 	if (p != NULL && q != NULL){
-		return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+		return (p->val == q->val) && isSameTree2(p->left, q->left) && isSameTree2(p->right, q->right);
 	} else if (p == NULL && q == NULL){
 		return true;
 	} else {
