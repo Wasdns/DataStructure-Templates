@@ -9,8 +9,9 @@ all:
 	g++ -Wall -o 105 105.cpp -std=c++11 -lpthread
 	g++ -Wall -o 106 106.cpp -std=c++11 -lpthread
 	g++ -Wall -o 107 107.cpp -std=c++11 -lpthread
+	g++ -Wall -o 112 112.cpp -std=c++11 -lpthread
 clean:
-	rm 94 98 100 101 102 103 104 105 106 107
+	rm 94 98 100 101 102 103 104 105 106 107 112
 94:
 	g++ -Wall -o 94 94.cpp -std=c++11 -lpthread
 98:
@@ -31,3 +32,5 @@ clean:
 	g++ -Wall -o 106 106.cpp -std=c++11 -lpthread
 107:
 	g++ -Wall -o 107 107.cpp -std=c++11 -lpthread
+112:
+	g++ -Wall -o 112 112.cpp -std=c++11 -lpthread
