@@ -12,8 +12,10 @@ all:
 	g++ -Wall -o 112 112.cpp -std=c++11 -lpthread
 	g++ -Wall -o 113 113.cpp -std=c++11 -lpthread
 	g++ -Wall -o 144 144.cpp -std=c++11 -lpthread
+	g++ -Wall -o 145 145.cpp -std=c++11 -lpthread
+	g++ -Wall -o 617 617.cpp -std=c++11 -lpthread
 clean:
-	rm 94 98 100 101 102 103 104 105 106 107 112 113 144
+	rm 94 98 100 101 102 103 104 105 106 107 112 113 144 145 617
 94:
 	g++ -Wall -o 94 94.cpp -std=c++11 -lpthread
 98:
@@ -40,3 +42,7 @@ clean:
 	g++ -Wall -o 113 113.cpp -std=c++11 -lpthread
 144:
 	g++ -Wall -o 144 144.cpp -std=c++11 -lpthread
+145:
+	g++ -Wall -o 145 145.cpp -std=c++11 -lpthread
+617:
+	g++ -Wall -o 617 617.cpp -std=c++11 -lpthread
