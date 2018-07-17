@@ -5,8 +5,9 @@ all:
 	g++ -Wall -o 125 125.cpp -std=c++11 -lpthread
 	g++ -Wall -o 344 344.cpp -std=c++11 -lpthread
 	g++ -Wall -o 345 345.cpp -std=c++11 -lpthread
+	g++ -Wall -o 520 520.cpp -std=c++11 -lpthread
 clean:
-	rm 28 58 67 125 344 345
+	rm 28 58 67 125 344 345 520
 28:
 	g++ -Wall -o 28 28.cpp -std=c++11 -lpthread
 58:
@@ -19,3 +20,5 @@ clean:
 	g++ -Wall -o 344 344.cpp -std=c++11 -lpthread
 345:
 	g++ -Wall -o 345 345.cpp -std=c++11 -lpthread
+520:
+	g++ -Wall -o 520 520.cpp -std=c++11 -lpthread
